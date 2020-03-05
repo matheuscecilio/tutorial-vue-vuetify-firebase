@@ -14,7 +14,7 @@
         </v-list>
       </v-navigation-drawer>
 
-      <v-toolbar app >
+      <v-app-bar app>
         <v-app-bar-nav-icon class="hidden-sm-and-up" @click="onNavBarClick()"></v-app-bar-nav-icon>
         <v-toolbar-title>
           <router-link to="/" tag="span" style="cursor: pointer">
@@ -28,7 +28,7 @@
             {{ item.title }}
           </v-btn>
         </v-toolbar-items>
-      </v-toolbar>
+      </v-app-bar>
 
     <v-content>
       <router-view></router-view>
@@ -43,20 +43,33 @@
 export default {
   name: 'App',
 
-  data: () => ({
-    appTitle: 'Awesome App',
-    sidebar: false,
-    menuItems: [
-      { title: 'Home', path: '/home', icon: 'mdi-home' },
-      { title: 'Sign Up', path: '/signup', icon: 'mdi-face' },
-      { title: 'Sign In', path: '/signin', icon: 'mdi-lock-open' }
-    ]
-  }),
+  data() {
+    return {
+      sidebar: false,
+      menuItems: [
+        { title: 'Home', path: '/home', icon: 'mdi-home' },
+        { title: 'Sign Up', path: '/signup', icon: 'mdi-face' },
+        { title: 'Sign In', path: '/signin', icon: 'mdi-lock-open' }
+      ]
+    }
+  },
 
   methods: {
     onNavBarClick: function() {
       this.sidebar = !this.sidebar;
     }
+  },
+
+  computed: {
+    appTitle() {
+      return this.$store.state.appTitle;
+    }
   }
 };
 </script>
+
+<style>
+.center {
+  text-align: center;
+}
+</style>

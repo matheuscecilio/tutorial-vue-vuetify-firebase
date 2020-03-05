@@ -1,8 +1,8 @@
 <template>
   <v-container>
-      <v-layout column>
-        <v-flex xs12 class="text-xs-center" mt-5>
-            <h1>SignIn page</h1>
+      <v-layout row>
+        <v-flex xs12 sm6 offset-sm3 mt-3>
+            <h1 class="center">SignIn page</h1>
         </v-flex>
       </v-layout>
   </v-container>
@@ -15,5 +15,4 @@ export default {
 </script>
 
 <style>
-
 </style>

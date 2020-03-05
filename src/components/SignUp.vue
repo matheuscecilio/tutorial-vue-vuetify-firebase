@@ -1,10 +1,8 @@
 <template>
   <v-container fluid>
     <v-layout row wrap>
-      <v-flex xs12 class="text-xs-center" mt-5>
-        <h1>Sign Up</h1>
-      </v-flex>
       <v-flex xs12 sm6 offset-sm3 mt-3>
+        <h1 class="center">Sign Up</h1>
         <form>
           <v-layout column>
             <v-flex>
@@ -49,5 +47,4 @@ export default {
 </script>
 
 <style>
-
 </style>
