@@ -1,22 +1,27 @@
 import Vue from 'vue'
 import App from './App.vue'
 import vuetify from './plugins/vuetify';
-import VueRouter from 'vue-router';
-import Routes from './routes';
+import firebase from 'firebase';
+import firebaseConfig from './firebase-config';
 import { store } from './store';
+import router from './router';
 
 Vue.config.productionTip = false;
 
-const router = new VueRouter({
-  mode: 'history',
-  routes: Routes
+firebase.initializeApp(firebaseConfig);
+firebase.analytics();
+const unsubscribe = firebase.auth().onAuthStateChanged((firebaseUser) => {
+  new Vue({
+    vuetify,
+    router,
+    store,
+    render: h => h(App),
+    created() {
+      if (firebaseUser) {
+        store.dispatch('autoSignIn', firebaseUser)
+      }    
+    }
+  })
+  .$mount('#app');
+  unsubscribe();
 });
-
-Vue.use(VueRouter);
-
-new Vue({
-  vuetify,
-  router,
-  store,
-  render: h => h(App)
-}).$mount('#app')
